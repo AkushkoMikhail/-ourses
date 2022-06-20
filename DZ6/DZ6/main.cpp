@@ -1,21 +1,36 @@
-
 #include <iostream>
 
-#include "Matrix3x3.h"
+#include "Matrix.h"
 
 int main() {
 
-	Matrix3x3 m = Matrix3x3(1,1,1,2,2,2,3,3,3);
+	std::vector<int> testValue = { 4,2,9,0 };
+	std::vector<int> firstValue = { 3,1,-3,4};
+	std::vector<int> secondValue = { 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
-	Matrix3x3 first = Matrix3x3(1,1,1,1,1,1,1,1,1);
-	Matrix3x3 second = Matrix3x3(3, 3, 3, 3, 3, 3, 3, 3, 3);
+	Matrix first = Matrix(firstValue,2,2);
+	Matrix m = Matrix(testValue,2,2);
+	Matrix second = Matrix(secondValue,3,3);
+	std::cout << m;
+	std::cout << first;
 
 
-	Matrix3x3 third = second;
+	m *= first;
+
+
+	Matrix third = second;
 
 	bool isTrue = third == second;
 	bool isFalse = third == first;
 
+	std::cout << "\n ------------ \n";
+	std::cout << first(0, -1) << "\n";
+	std::cout << first(0, 1) << "\n";
+	std::cout << first(0, 2) << "\n";
+
+	std::cout << first(3, 0) << "\n";
+	std::cout << first(3, 1) << "\n";
+	std::cout << first(3, 3) << "\n";
 
 	third +=first;
 	third -= first;
@@ -23,8 +38,6 @@ int main() {
 	third = third + first;
 	third = third - first;
 
-	third = third * m;
-	third *= m;
 
 	third++;
 	third--;
@@ -32,9 +45,12 @@ int main() {
 	--third;
 	++third;
 
-	int i = third(1, 1);
+	third = third * m;
+	third *= m;
 
-	std::cout << third;
+
+
+
 	std::cin >> m;
 	std::cout << m;
 	return 0;
